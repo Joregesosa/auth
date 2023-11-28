@@ -1,3 +1,20 @@
+<?php
+
+ 
+                 
+session_start();
+
+if (isset($_SESSION['datoUsuario'])) {
+    $datoUsuario = $_SESSION['datoUsuario'];
+
+    $dataImg = base64_encode($datoUsuario["foto"]);
+     
+}else{
+    // si no existe ninguna session redireccionar al login
+    header('location: index.php');
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,17 +25,12 @@
 </head>
 
 <body>
-    <?php
-    session_start();
 
-    if (isset($_SESSION['datoUsuario'])) {
-        $datoUsuario = $_SESSION['datoUsuario'];
+    <h1>Welcome</h1><br>
+    
+    <?php echo "<img src='data:image/png;base64,$dataImg' height='200' />"?>
 
-        print_r($datoUsuario['correo']);
-    }
-
-    ?>
-    <h1>Welcome</h1>
+    <a href="./scripts/logout.php">Cerrar Session</a>
 </body>
 
 </html>

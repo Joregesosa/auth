@@ -13,6 +13,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 if(isset($_FILES['foto'])){
 
     $img = $_FILES['foto']['tmp_name'];
+    
     $imgContent = addslashes(file_get_contents($img));
     
 }
