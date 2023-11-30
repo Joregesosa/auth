@@ -7,8 +7,11 @@ session_start();
 if (isset($_SESSION['datoUsuario'])) {
     $datoUsuario = $_SESSION['datoUsuario'];
 
-    $dataImg = base64_encode($datoUsuario["foto"]);
-     
+  
+        $imgName = $datoUsuario["foto"];
+   
+    // $dataImg = base64_encode($datoUsuario["foto"]);
+    
 }else{
     // si no existe ninguna session redireccionar al login
     header('location: index.php');
@@ -27,9 +30,19 @@ if (isset($_SESSION['datoUsuario'])) {
 <body>
 
     <h1>Welcome</h1><br>
-    
-    <?php echo "<img src='data:image/png;base64,$dataImg' height='200' />"?>
 
+
+
+     
+    <?php if($datoUsuario["foto"] != '' ):?>
+    
+        <img src="./upload/<?=$imgName?>" alt="">
+        
+    <?php endif?>
+    
+    <?php //echo "<img src='data:image/png;base64,$dataImg' height='200' />"?>
+    
+    <a href="./updateFotoForm.php">Edit Foto </a><br><br>
     <a href="./scripts/logout.php">Cerrar Session</a>
 </body>
 
